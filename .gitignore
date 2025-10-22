@@ -39,3 +39,60 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+.env
+
+# Python Virtual Environments (All locations)
+venv/
+.venv/
+env/
+ENV/
+backend/venv/
+backend/agents/venv/
+*/venv/
+*/.venv/
+
+# Environment files (All locations)
+.env
+.env.local
+.env.*.local
+backend/.env
+backend/.env.local
+*/.env
+
+# Audit reports
+alignment_report.json
+audit_report.json
+*.report.json
+
+# Mac OS files
+Icon\r
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Next.js build
+.next/
+out/
+build/
+
+# Node modules
+node_modules/
+
+# Python Virtual Environments
+**/venv/
+**/.venv/
+**/env/
+
+# Environment Files
+**/.env
+**/.env.local
+.env*
+
+# Reports
+*_report.json
+
+# Mac
+.DS_Store
+Icon\r
+Icon?
+Icon

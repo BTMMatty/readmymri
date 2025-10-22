@@ -1,0 +1,353 @@
+/* IMPORTS MUST BE FIRST! */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* MEDICAL AI COLOR PALETTE */
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 10, 10, 10;
+  
+  /* Medical theme colors */
+  --medical-teal: #14b8a6;
+  --medical-purple: #8b5cf6;
+  --medical-green: #10b981;
+  --medical-blue: #0ea5e9;
+  --danger-red: #ef4444;
+  --success-green: #22c55e;
+  
+  /* Glow colors */
+  --glow-primary: rgba(139, 92, 246, 0.6);
+  --glow-secondary: rgba(20, 184, 166, 0.6);
+}
+
+/* NUCLEAR TEXT CENTERING */
+@layer utilities {
+  .text-center-force {
+    text-align: center !important;
+  }
+  
+  .center-everything * {
+    text-align: center !important;
+  }
+  
+  .force-center {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+}
+
+/* BASE STYLES */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: #000;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ANIMATED BACKGROUND */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(20, 184, 166, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 50% 100%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+  z-index: -1;
+  animation: backgroundShift 20s ease-in-out infinite;
+}
+
+@keyframes backgroundShift {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* MEDICAL GRID PATTERN */
+.medical-grid {
+  background-image: 
+    linear-gradient(rgba(20, 184, 166, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(20, 184, 166, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* ENHANCED SCROLLBAR */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--medical-teal), var(--medical-purple));
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, var(--medical-blue), var(--medical-purple));
+  box-shadow: 0 0 10px var(--glow-primary);
+}
+
+/* SELECTION */
+::selection {
+  background: rgba(139, 92, 246, 0.4);
+  color: #fff;
+  text-shadow: 0 0 10px var(--glow-primary);
+}
+
+/* GRADIENT TEXT UTILITIES */
+.gradient-text {
+  background: linear-gradient(135deg, var(--medical-teal) 0%, var(--medical-purple) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.gradient-text-animated {
+  background: linear-gradient(270deg, var(--medical-teal), var(--medical-purple), var(--medical-blue), var(--medical-teal));
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 5s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ENHANCED GLASSMORPHISM */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(139, 92, 246, 0.1);
+}
+
+.glass-dark {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* MEDICAL CARD STYLES */
+.medical-card {
+  background: linear-gradient(135deg, rgba(20, 184, 166, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 0 20px rgba(139, 92, 246, 0.1),
+    inset 0 0 20px rgba(255, 255, 255, 0.02);
+  transition: all 0.3s ease;
+}
+
+.medical-card:hover {
+  border-color: var(--medical-purple);
+  box-shadow: 
+    0 0 30px rgba(139, 92, 246, 0.3),
+    inset 0 0 20px rgba(255, 255, 255, 0.05);
+  transform: translateY(-2px);
+}
+
+/* ENHANCED GLOW EFFECTS */
+.glow-teal {
+  box-shadow: 0 0 30px var(--medical-teal);
+}
+
+.glow-purple {
+  box-shadow: 0 0 30px var(--medical-purple);
+}
+
+.glow-pulse {
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(139, 92, 246, 0.8);
+  }
+}
+
+/* UPLOAD AREA SPECIFIC */
+.upload-zone {
+  background: 
+    radial-gradient(circle at center, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+  transition: all 0.3s ease;
+}
+
+.upload-zone:hover {
+  background: 
+    radial-gradient(circle at center, rgba(139, 92, 246, 0.2) 0%, transparent 70%);
+}
+
+.upload-zone.drag-active {
+  background: 
+    radial-gradient(circle at center, rgba(20, 184, 166, 0.3) 0%, transparent 70%);
+  border-color: var(--medical-teal) !important;
+}
+
+/* LOADING STATES */
+.loading-skeleton {
+  background: linear-gradient(90deg, 
+    rgba(255, 255, 255, 0.05) 25%, 
+    rgba(255, 255, 255, 0.1) 50%, 
+    rgba(255, 255, 255, 0.05) 75%
+  );
+  background-size: 200% 100%;
+  animation: loading 1.5s ease-in-out infinite;
+}
+
+@keyframes loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* BUTTONS */
+.btn-primary {
+  background: linear-gradient(135deg, var(--medical-teal) 0%, var(--medical-purple) 100%);
+  color: white;
+  font-weight: 600;
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-primary:hover::before {
+  left: 100%;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 40px rgba(139, 92, 246, 0.4);
+}
+
+/* INPUT STYLES */
+input, textarea {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: 1rem 1.5rem;
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--medical-purple);
+  box-shadow: 
+    0 0 0 3px rgba(139, 92, 246, 0.1),
+    0 0 20px rgba(139, 92, 246, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* ANIMATIONS */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-10px) rotate(1deg); }
+  66% { transform: translateY(-5px) rotate(-1deg); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* MEDICAL BADGES */
+.badge-success {
+  background: rgba(34, 197, 94, 0.2);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: #22c55e;
+}
+
+.badge-info {
+  background: rgba(14, 165, 233, 0.2);
+  border: 1px solid rgba(14, 165, 233, 0.3);
+  color: #0ea5e9;
+}
+
+/* RESPONSIVE UTILITIES */
+@media (max-width: 768px) {
+  :root {
+    font-size: 14px;
+  }
+  
+  .text-6xl { font-size: 2.5rem; }
+  .text-5xl { font-size: 2rem; }
+  .text-4xl { font-size: 1.75rem; }
+  
+  .medical-card {
+    padding: 1rem;
+  }
+}
+
+/* PRINT STYLES */
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+  
+  .no-print {
+    display: none !important;
+  }
+}

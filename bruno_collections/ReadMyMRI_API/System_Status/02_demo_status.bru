@@ -1,0 +1,73 @@
+meta {
+  name: System Demo Status Check
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{base_url}}/api/demo-status
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+}
+
+tests {
+  test("Status check returns 200", function() {
+    expect(res.status).to.equal(200);
+  });
+  
+  test("System has status", function() {
+    expect(res.body.status).to.exist;
+    expect(res.body.status).to.include('SYSTEM STATUS');
+  });
+  
+  test("Streaming enabled", function() {
+    expect(res.body.streaming_enabled).to.exist;
+    expect(res.body.streaming_enabled).to.include('✅');
+  });
+  
+  test("Components status available", function() {
+    expect(res.body.components).to.exist;
+  });
+  
+  test("Integration layer status", function() {
+    const integration = res.body.components.integration_layer;
+    expect(integration).to.be.oneOf(['✅ Ready', '❌ Not available']);
+  });
+  
+  test("AI agents status", function() {
+    const ai_agents = res.body.components.ai_agents;
+    expect(ai_agents).to.be.oneOf(['✅ Ready', '❌ Not available']);
+  });
+  
+  test("Preprocessor available", function() {
+    const preprocessor = res.body.components.preprocessor;
+    expect(preprocessor).to.exist;
+    expect(preprocessor).to.include('✅');
+  });
+  
+  test("System info available", function() {
+    if (res.body.system_info) {
+      expect(res.body.system_info.version).to.exist;
+      expect(res.body.system_info.protocol_mismatch_resistant).to.equal(true);
+    }
+  });
+  
+  test("Demo confidence level", function() {
+    expect(res.body.demo_confidence).to.exist;
+    expect(res.body.demo_confidence).to.be.oneOf([
+      '💯 FULL AI ANALYSIS READY',
+      '⚠️  PREPROCESSING ONLY',
+      '🚫 SYSTEM NOT READY'
+    ]);
+  });
+}
+
+docs {
+  # System Demo Status Check
+  
+  Comprehensive system health check showing all component status.
+}

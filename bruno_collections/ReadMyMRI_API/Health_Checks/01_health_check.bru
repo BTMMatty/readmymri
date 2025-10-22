@@ -1,0 +1,59 @@
+meta {
+  name: Health Check
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/api/health
+  body: none
+  auth: none
+}
+
+assert {
+  res.status: eq 200
+}
+
+tests {
+  test("Health check returns 200", function() {
+    expect(res.status).to.equal(200);
+  });
+  
+  test("Status is healthy", function() {
+    expect(res.body.status).to.exist;
+    expect(res.body.status).to.include('HEALTHY');
+  });
+  
+  test("Service identified", function() {
+    expect(res.body.service).to.exist;
+    expect(res.body.service).to.include('ReadMyMRI');
+  });
+  
+  test("Streaming enabled", function() {
+    expect(res.body.streaming_enabled).to.equal(true);
+  });
+  
+  test("Max upload size specified", function() {
+    expect(res.body.max_upload_size).to.exist;
+  });
+  
+  test("Integration readiness indicated", function() {
+    expect(res.body.integration_ready).to.be.a('boolean');
+  });
+  
+  test("AI agents availability indicated", function() {
+    expect(res.body.ai_agents_available).to.be.a('boolean');
+  });
+  
+  test("Protocol mismatch handling enabled", function() {
+    expect(res.body.protocol_mismatch_handling).to.equal(true);
+  });
+}
+
+docs {
+  # Health Check
+  
+  Simple health check endpoint to verify API is operational.
+  
+  **Endpoint:** GET /api/health
+}

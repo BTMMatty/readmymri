@@ -1,0 +1,18 @@
+# Sensitive environment files
+environments/production.bru
+environments/staging.bru
+environments/*.secret.bru
+
+# Secrets
+secrets.json
+*.secret.*
+
+# Test results
+results/
+*.json
+*.xml
+*.html
+
+# Temporary files
+*.tmp
+.bruno-tmp/
