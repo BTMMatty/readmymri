@@ -1,5 +1,12 @@
 🚀 LAUNCH: ReadMyMRI v3.0 - Multi-Agent AI Medical Imaging Platform
 
+<img width="942" height="860" alt="CleanShot 2025-10-21 at 23 41 08" src="https://github.com/user-attachments/assets/e9bf8e55-c0d1-42eb-ac41-ea4c8008b219" />
+<img width="959" height="753" alt="CleanShot 2025-10-21 at 23 42 08" src="https://github.com/user-attachments/assets/cc1c97cb-6e84-4da8-b75d-b1d7d8e65210" />
+<img width="590" height="730" alt="CleanShot 2025-10-21 at 23 43 27" src="https://github.com/user-attachments/assets/c24607fc-3fd9-4f1e-b397-66e31978e315" />
+
+
+
+
 🎉 The medical imaging AI revolution begins NOW!
 
 ReadMyMRI v3.0 is production-ready, battle-tested, and implements revolutionary
